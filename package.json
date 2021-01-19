@@ -1,0 +1,33 @@
+{
+  "name": "cypress-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules\\.bin\\cypress run",
+    "headTest": "npm run test -- --headed",
+    "chromeTest": "npm run test -- --browser chrome",
+    "recordDashboredTest": "npm run test -- --record --key e2950be3-b923-4ce2-8d58-d1e95633e848 --reporter mochawesome",
+    "seleniumTest": "npm run test -- --record --key e2950be3-b923-4ce2-8d58-d1e95633e848 --reporter mochawesome --spec \"cypress/integration/seleniumScript/*\" ",
+    "cypressFameworkTest": "npm run test -- --record --key e2950be3-b923-4ce2-8d58-d1e95633e848 --reporter mochawesome --spec \"cypress/integration/example/*\" "
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "author": "Jenish",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^6.2.1",
+    "cypress-cucumber-preprocessor": "^4.0.0",
+    "cypress-iframe": "^1.0.1",
+    "mocha": "^8.2.1",
+    "mochawesome": "^6.2.1",
+    "multiple-cucumber-html-reporter": "^1.18.0"
+  }
+}

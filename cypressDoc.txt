@@ -1,0 +1,172 @@
+Step 1:- download Node.js application and install it
+Step 2:- Set Node.js Directory in Enviorment Variable 
+Step 3: Download VScode and Install it
+Step 4:- Create Empty folder in system by any name 
+Step 5:- Open VScode and Go to File Menu & Open Folder created in Step4
+Step 6:- Open Terminal and in VScode and Write down:- npm init
+	 So download package.json in directory folder. now need to add cypress dependancy in project
+Step 7:- Go to termina and write down command and fetch all cypress dependancy. 
+	 npm install cypress --save-dev 
+	This command only for 1st time after that it will automatically find that.
+Step 8: After All dependacy downloaded. check on left side node_modules folder availble
+Step 9: Open Windows Powershell -> Write down this commmand and 
+	Set-ExecutionPolicy RemoteSigned and Enter "yes" 
+Step 10:-Back to Vscode and enter below command in Terminal for open cypress:- 
+		 node_modules\.bin\cypress open
+
+Step 11:- Create new test.js file in to cypress > Integration -> Examples. and write code
+Step 12:- For Run through terminal use below commands
+	node_modules\.bin\cypress run -> for all specs (headless)
+	node_modules\.bin\cypress run --headed -> Test with headed (Visually)
+	node_modules\.bin\cypress run --browser chrome -> for test in chrome browser 
+cypress
+--fixtures (for store test data)
+--integration (Test case for run spesifically builds only)
+--plugin
+--support (All reusable methods defind into support folder for test class)
+--video (Recored video and store it )
+ 
+
+/// <reference types="Cypress" />  --> autocorrection for cypress
+
+cy.visit('url')
+cy.get('.search-keyword').type('ca')
+Asserting product list count:- 
+cy.get('.product').should('have.length',4)
+cy.get('.products').find('.product').should('have.length',2)
+
+
+For alias:- 
+cy.get('.product').as('productLocator')
+
+For using find and Click on produt using index
+cy.get('.products').find('.product').eq(1).contains("ADD TO CART").click()
+
+Array and selecting 
+
+cy.get('.products').find('.product').each(($e1, index, $list)=>{
+	const productName = $e1.find('h4.product-name').text()
+        if(productName.includes('Brinjal'))
+        {
+        	cy.wrap($e1).find('button').click()
+	     // $e1.find('button').click()
+         }
+})
+
+for using jQuery handle it:-
+
+cy.get('.brand').then(function(logo_Ele)
+{
+	cy.log(logo_Ele.text())
+})
+
+
+if getting any issue parameters in cypress.json:- 
+"modifyObstructiveCode": false
+"experimentalSourceRewriting":true,
+"chromeWebSecurity": true
+
+
+For Handlle iFrame 
+- install Plugin using npm install -D cypress-iframe
+
+/// <reference types="Cypress-iframe" />   --> for autocorrection for cypress iframe
+import 'cypress-iframe  --> import cypress iframe
+
+
+--- Framework
+
+- for test data you have create or add testdata in fixture formate add data
+- alwayes call test data in before method for load 
+- fixture automatically handle the data file but not allowing those data outside of that function so you need
+to accese through this keyword. 
+
+
+
+-- using cy.pause() you can debuging for issue
+-- you can create own customized Cypress commands for you script
+--- using parameterizing for test data from json like array ..
+
+
+PageObject Model Framework
+
+- All pages of website
+
+Make available access class for other class.  Use export default zyxclasname
+
+
+// for import pageobject pages To testCase file
+import HomePage from '../PageObjectModel/HomePage'
+import ShopPage from '../PageObjectModel/ShopPage'
+
+for only for related testcase
+Cypress.config('defaultCommandTimeout',8000)
+
+
+run testcase using CMD and pass url through also
+node_modules\.bin\cypress run --spec cypress/integration/examples/cypressFramework.js --env url=http://google.com --headed
+
+
+run for recored and dashboard
+
+node_modules\.bin\cypress run --record --key e2950be3-b923-4ce2-8d58-d1e95633e848
+
+
+For HTML reports use mocha awesome (https://www.npmjs.com/package/mochawesome)
+npm install --save-dev mocha
+npm install --save-dev mochawesome
+
+then add below attr in cypress.json
+  "reporter": "mochawesome",
+
+run using cmd
+ run --reporter mochawesome --spec cypress/integration/examples/cypressFramework.js 
+
+node_modules\.bin\cypress run --spec cypress/integration/seleniumScript/*
+
+
+Cucumber Installation with cypress
+https://github.com/TheBrainFamily/cypress-cucumber-preprocessor 
+step 1- npm install --save-dev cypress-cucumber-preprocessor
+step 2- Go to plugin -> index.js add this below statments
+ -> const cucumber = require('cypress-cucumber-preprocessor').default
+ - >  on('file:preprocessor', cucumber())
+
+step 3 - Add stament in cypress.json as below. it's important 
+ "testFiles" : "**/*.feature"
+--create senario file called as .feature file -> all senario write into .feature file
+
+Step 4:- add in package.json
+"cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
+
+Support plugin for .feature file 
+https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete
+
+Create BDD folder in intergration 
+In BDD create same name of folder As .feature file 
+for Example:-
+BDD
+|-Ecommerce.feature
+|-Ecommerce (Folder)
+   |-->EcommerceSteps.js
+
+
+import below statment in .js file
+--> import { Given, When, Then} from "cypress-cucumber-preprocessor/steps"
+
+
+cypress run --spec cypress\integration\examples\BDD\Ecommerce.feature --headed --browser chrome
+
+can't run tag directly from module path 
+run command for Tag
+npx cypress-tags run -e TAGS="@Smoke" --headed --browser chrome
+
+Cucumber Report in cypress
+
+
+npm install multiple-cucumber-html-reporter --save-dev
+
+create new file cucumber-html-report.js and copy code form https://github.com/wswebcreation/multiple-cucumber-html-reporter
+node cucumber-html-report.js

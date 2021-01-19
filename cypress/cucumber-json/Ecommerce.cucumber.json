@@ -1,0 +1,142 @@
+[
+  {
+    "description": "    Application Regration testing",
+    "keyword": "Feature",
+    "name": "End to end Ecommerce fllow Validation",
+    "line": 1,
+    "id": "end-to-end-ecommerce-fllow-validation",
+    "tags": [],
+    "uri": "Ecommerce.feature",
+    "elements": [
+      {
+        "id": "end-to-end-ecommerce-fllow-validation;ecommerce-products-delivery",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Ecommerce products delivery",
+        "tags": [
+          {
+            "name": "@Regression",
+            "line": 4
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I open Ecommerce page",
+            "result": {
+              "status": "passed",
+              "duration": 9609000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "i add products into cart",
+            "result": {
+              "status": "passed",
+              "duration": 6725000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "Validate the total price and Checkout process",
+            "result": {
+              "status": "passed",
+              "duration": 149000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "Select the country and Submit and verfiy Thank you",
+            "result": {
+              "status": "passed",
+              "duration": 10691000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "end-to-end-ecommerce-fllow-validation;filing-register-form",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Filing Register form",
+        "tags": [
+          {
+            "name": "@Smoke",
+            "line": 12
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 14,
+            "name": "I open Ecommerce page",
+            "result": {
+              "status": "passed",
+              "duration": 2501000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "name",
+                      "email",
+                      "gender"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "Jenish Gandhi",
+                      "jenish.gandhi@gmail.com",
+                      "Male"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I filling the form details",
+            "result": {
+              "status": "passed",
+              "duration": 1685000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "Submit and Validating form behaviour",
+            "result": {
+              "status": "passed",
+              "duration": 196000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "Navigate to Shop Page",
+            "result": {
+              "status": "passed",
+              "duration": 605000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
